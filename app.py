@@ -68,12 +68,14 @@ async def submit(
 
     image_url = None
     if image_data:
-        # Décoder le base64
-        header, encoded = image_data.split(",", 1)
-        media_type = header.split(":")[1].split(";")[0]
-        image_bytes = base64.b64decode(encoded)
-        filename = f"receipt_{Horodatage or 'unknown'}.jpg"
-        image_url = sheets.upload_image(image_bytes, filename, media_type)
+        try:
+            header, encoded = image_data.split(",", 1)
+            media_type = header.split(":")[1].split(";")[0]
+            image_bytes = base64.b64decode(encoded)
+            filename = f"receipt_{Horodatage or 'unknown'}.jpg"
+            image_url = sheets.upload_image(image_bytes, filename, media_type)
+        except Exception as e:
+            print(f"[WARN] Upload image échoué, on continue sans : {e}")
 
     sheets.append_expense(data, image_url=image_url)
 
@@ -88,7 +90,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 def _error(message: str) -> str:
     return f"""
     <div class="error">
-        <p>❌ {message}</p>
+        <p>{message}</p>
     </div>
     """
 

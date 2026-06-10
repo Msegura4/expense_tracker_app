@@ -76,6 +76,7 @@ analyzeBtn.addEventListener('click', async () => {
     }
 
     document.getElementById('form-container').innerHTML = html;
+    htmx.process(document.getElementById('form-container'));
     formSection.style.display = 'block';
     formSection.scrollIntoView({ behavior: 'smooth' });
     setStatus('> Extraction terminée — vérifiez et corrigez les champs si nécessaire');
@@ -128,5 +129,6 @@ function setStatus(msg) {
 function showError(html) {
   formSection.style.display = 'block';
   document.getElementById('form-container').innerHTML = html;
+  htmx.process(document.getElementById('form-container'));
   setStatus('> Erreur lors de l\'analyse');
 }
