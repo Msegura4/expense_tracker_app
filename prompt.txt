@@ -1,0 +1,28 @@
+Analyse cette note de frais et extrais les informations suivantes en JSON :
+
+Champs attendus :
+- Horodatage : datetime — format ISO 8601 (AAAA-MM-JJTHH:MM:SS)
+- Type : string — enum: restaurant | transport | hôtel | autre
+- Fournisseur : string
+- Date : date — format AAAA-MM-JJ
+- Montant TTC ($) : float
+- TVA ($) : float
+- Devise : enum — USD | EUR | GBP | CHF | ...
+- Description : string
+- Confiance : string — enum: haute | moyen | basse
+- Image : URL — lien ou chemin vers le fichier image
+
+{
+  "Horodatage": "",
+  "Type": "",
+  "Fournisseur": "",
+  "Date": "",
+  "Montant TTC ($)": "",
+  "TVA ($)": "",
+  "Devise": "",
+  "Description": "",
+  "Confiance": "",
+  "Image": ""
+}
+
+Retourne uniquement ce JSON, sans texte autour. Tout champ illisible ou absent vaut null.

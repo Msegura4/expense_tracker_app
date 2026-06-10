@@ -1,0 +1,252 @@
+/* ─── RESET & BASE ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0d0d;
+  --bg-panel: #111111;
+  --bg-hover: #1a1a1a;
+  --green: #00ff41;
+  --green-dim: #00aa2a;
+  --green-dark: #003310;
+  --amber: #ffb700;
+  --red: #ff3c3c;
+  --text: #cccccc;
+  --border: #1f5c2e;
+  --font: 'Courier New', Courier, monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ─── TERMINAL CONTAINER ───────────────────────────────────────── */
+.terminal {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ─── TITLE BAR ─────────────────────────────────────────────────── */
+.title-bar {
+  color: var(--green);
+  font-size: 13px;
+  padding: 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* ─── ASCII LOGO ─────────────────────────────────────────────────── */
+.header {
+  border: 1px solid var(--border);
+  border-bottom: none;
+  padding: 16px;
+  background: var(--bg-panel);
+}
+
+.ascii-logo {
+  color: var(--green);
+  font-size: 10px;
+  line-height: 1.2;
+  overflow-x: auto;
+}
+
+.subtitle {
+  color: var(--green-dim);
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* ─── SECTIONS ───────────────────────────────────────────────────── */
+.section {
+  border: 1px solid var(--border);
+  border-top: none;
+  background: var(--bg-panel);
+}
+
+.section-title {
+  color: var(--green);
+  font-size: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--green-dark);
+  letter-spacing: 1px;
+}
+
+.section-body {
+  padding: 20px 16px;
+}
+
+/* ─── DROP ZONE ──────────────────────────────────────────────────── */
+.drop-zone {
+  border: 1px dashed var(--green-dim);
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: var(--green);
+  background: var(--green-dark);
+}
+
+.drop-text { color: var(--text); line-height: 2; }
+.hint { font-size: 11px; color: #555; }
+
+.link {
+  color: var(--green);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#preview {
+  max-width: 100%;
+  max-height: 300px;
+  border: 1px solid var(--border);
+  display: block;
+  margin: 0 auto;
+}
+
+/* ─── ACTIONS ────────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* ─── BUTTONS ────────────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 8px 20px;
+  cursor: pointer;
+  border: 1px solid;
+  background: transparent;
+  transition: all 0.15s;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.btn-primary:hover {
+  background: var(--green);
+  color: var(--bg);
+}
+
+.btn-secondary {
+  color: #555;
+  border-color: #333;
+}
+
+.btn-secondary:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+/* ─── FORM ───────────────────────────────────────────────────────── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+form label {
+  color: var(--green-dim);
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+  display: block;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+form input:focus,
+form select:focus {
+  border-color: var(--green);
+}
+
+form select option {
+  background: var(--bg);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-submit {
+  margin-top: 8px;
+}
+
+/* ─── RÉSULTAT ───────────────────────────────────────────────────── */
+.success {
+  border-left: 3px solid var(--green);
+  padding: 12px 16px;
+  background: var(--green-dark);
+  color: var(--green);
+}
+
+.error {
+  border-left: 3px solid var(--red);
+  padding: 12px 16px;
+  background: #1a0000;
+  color: var(--red);
+}
+
+/* ─── STATUS BAR ─────────────────────────────────────────────────── */
+.status-bar {
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 6px 16px;
+  font-size: 11px;
+  color: var(--green-dim);
+  display: flex;
+  justify-content: space-between;
+  background: var(--green-dark);
+}
+
+/* ─── LOADING ────────────────────────────────────────────────────── */
+.htmx-indicator {
+  display: none;
+  color: var(--amber);
+  padding: 12px 0;
+}
+
+.htmx-request .htmx-indicator { display: block; }
+
+/* ─── BLINK ──────────────────────────────────────────────────────── */
+.blink {
+  animation: blink 1s step-end infinite;
+  color: var(--green);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
