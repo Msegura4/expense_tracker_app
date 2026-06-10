@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EXPENSE TRACKER v1.0</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+<body>
+
+  <div class="terminal">
+
+    <div class="title-bar">
+      <span>┌─[ EXPENSE TRACKER v1.0 ]─────────────────────────────────────────┐</span>
+    </div>
+
+    <div class="header">
+      <pre class="ascii-logo">
+  ███████╗██╗  ██╗██████╗ ███████╗███╗   ██╗███████╗███████╗
+  ██╔════╝╚██╗██╔╝██╔══██╗██╔════╝████╗  ██║██╔════╝██╔════╝
+  █████╗   ╚███╔╝ ██████╔╝█████╗  ██╔██╗ ██║███████╗█████╗
+  ██╔══╝   ██╔██╗ ██╔═══╝ ██╔══╝  ██║╚██╗██║╚════██║██╔══╝
+  ███████╗██╔╝ ██╗██║     ███████╗██║ ╚████║███████║███████╗
+  ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═══╝╚══════╝╚══════╝
+      </pre>
+      <p class="subtitle">&gt; Système de gestion automatique des notes de frais_</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">┌─[ 01. SÉLECTION DE L'IMAGE ]</div>
+      <div class="section-body">
+
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" hidden/>
+          <div class="drop-text" id="drop-text">
+            <span class="blink">&gt;</span> Glissez une image ici ou <span class="link" onclick="document.getElementById('file-input').click()">[ PARCOURIR ]</span>
+            <br/>
+            <span class="hint">Formats acceptés : JPEG · PNG · WEBP · Max 10MB</span>
+          </div>
+          <img id="preview" src="" alt="" hidden/>
+        </div>
+
+        <div class="actions" id="upload-actions" style="display:none">
+          <button class="btn btn-primary" id="analyze-btn">
+            &gt; ANALYSER L'IMAGE
+          </button>
+          <button class="btn btn-secondary" id="reset-btn">
+            [ RÉINITIALISER ]
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section" id="form-section" style="display:none">
+      <div class="section-title">┌─[ 02. DONNÉES EXTRAITES — ÉDITION MANUELLE ]</div>
+      <div class="section-body">
+        <div id="form-container">
+          <!-- HTMX injecte le formulaire ici -->
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="result-section" style="display:none">
+      <div class="section-title">┌─[ 03. CONFIRMATION ]</div>
+      <div class="section-body">
+        <div id="result">
+          <!-- HTMX injecte la confirmation ici -->
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar">
+      <span id="status-msg">&gt; En attente d'une image...</span>
+      <span class="right">[ Python · FastAPI · Groq · Llama 4 Scout ]</span>
+    </div>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
