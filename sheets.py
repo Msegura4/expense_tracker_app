@@ -15,7 +15,6 @@ SCOPES = [
 class GoogleSheetsClient:
     def __init__(self):
         load_dotenv()
-
         credentials_path = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
         sheet_id = os.getenv("GOOGLE_SHEET_ID")
 
@@ -27,15 +26,17 @@ class GoogleSheetsClient:
 
         # Connexion Google Drive
         self.drive = build("drive", "v3", credentials=creds)
+        self.drive_folder_id = os.getenv("GOOGLE_DRIVE_FOLDER_ID")
 
     def upload_image(self, image_bytes: bytes, filename: str, media_type: str) -> str:
-        file_metadata = {"name": filename}
+        file_metadata = {"name": filename, "parents": [self.drive_folder_id]}
         media = MediaIoBaseUpload(io.BytesIO(image_bytes), mimetype=media_type)
 
         file = self.drive.files().create(
             body=file_metadata,
             media_body=media,
-            fields="id"
+            fields="id",
+            supportsAllDrives=True
         ).execute()
 
         file_id = file.get("id")
